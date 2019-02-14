@@ -1,0 +1,24 @@
+{
+  "name": "@zayyeh/request",
+  "version": "0.1.0",
+  "description": "Tiny HTTP-client without dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GET",
+    "POST",
+    "HTTP"
+  ],
+  "author": "Pavel Kostyurin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelkostyurin/request.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pavelkostyurin/request/issues"
+  },
+  "homepage": "https://github.com/pavelkostyurin/request#readme"
+}
