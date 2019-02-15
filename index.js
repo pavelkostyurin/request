@@ -1,31 +1,32 @@
 const url = require('url');
 
-module.exports = (options, callback) => {
+module.exports = (opts, cb) => {
     const promise = new Promise((resolve, reject) => {
-        options = Object.assign({}, typeof options === 'string' ? {url: options} : options);
+        opts = Object.assign({}, typeof opts === 'string' ? {url: opts} : opts);
 
-        if (options.url) Object.assign(options, url.parse(options.url));
+        if (opts.url) Object.assign(opts, url.parse(opts.url));
 
-        const lib = require(options.protocol === 'http:' ? 'http' : 'https');
+        const lib = require(opts.protocol === 'http:' ? 'http' : 'https');
         lib.globalAgent.maxSockets = 45;
 
-        const request = lib.request(options, response => {
-            
-            if (response.statusCode < 200 || response.statusCode > 299) {
-                reject(new Error(`Failed to get ${options.url}, status code: ${response.statusCode}`));
+        const req = lib.request(opts, res => {
+
+            if (res.statusCode < 200 || res.statusCode > 299) {
+                reject(new Error(`Failed to get ${opts.url}, status code: ${res.statusCode}`));
             }
 
-            const body = [];
-            response.on('data', chunk => body.push(chunk));
-            response.on('end', () => resolve({...response, body: body.join('')}));
+            res.setEncoding('utf8');
+            let body = '';
+            res.on('data', data => { body += data; });
+            res.on('end', () => resolve({ ...res, body }));
         });
 
-        request.on('error', error => reject(error));
-        request.end();
-    })
+        req.on('error', error => reject(error));
+        req.end();
+    });
 
-    if (callback && typeof callback == 'function') {
-        promise.then(callback.bind(null, null), callback);
+    if (cb && typeof cb == 'function') {
+        promise.then(cb.bind(null, null), cb);
     }
 
     return promise;
