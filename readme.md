@@ -1,9 +1,12 @@
 # @zayyeh/request
-[![npm (scoped)]
-(https://img.shields.io/bundlephobia/min/@zayyeh/request.svg?style=flat)]
-(https.github.com/pavelkostyurin/request)
 
-https://img.shields.io/node/v/@zayyeh/request.svg?style=flat
+[![install size][size-img]][size-url] [![node][node-img]][node-url]
+
+[size-img]: https://packagephobia.now.sh/badge?p=@zayyeh/request
+[size-url]: https://packagephobia.now.sh/result?p=@zayyeh/request
+[node-img]: https://img.shields.io/node/v/@zayyeh/request.svg?style=flat
+[node-url]: https://github.com/pavelkostyurin/request
+
 Tiny HTTP-client without dependencies.
 
 ### features
