@@ -1,7 +1,7 @@
 {
-  "name": "@zayyeh/request",
-  "version": "0.1.4",
-  "description": "Tiny HTTP-client without dependencies",
+  "name": "finer",
+  "version": "0.1.5",
+  "description": "Tiny HTTP-client without dependencies. Stupid, simple, no fancy stuff.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
