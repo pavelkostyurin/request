@@ -26,9 +26,9 @@ npm i finer
 ### callback
 
 ```js
-const request = require('finer');
+const finer = require('finer');
 
-request('http://example.com', (err, res) => {
+finer('http://example.com', (err, res) => {
   if (err) console.log(err);
   console.log(res.statusCode); // 200
 });
@@ -37,41 +37,31 @@ request('http://example.com', (err, res) => {
 ### promise
 
 ```js
-const request = require('finer');
+const finer = require('finer');
 
-request('http://example.com')
-  .then(res => console.log(res.body)) // body
+finer('http://example.com')
+  .then(res => console.log(res.statusCode)) // 200
   .catch(err => console.log(err));
 ```
 
 ### async/await
 
 For `POST` use option `{ method: 'POST' }`.
-Schedule a go-CD pipeline:
 
 ```js
-const request = require('finer');
+const finer = require('finer');
 
-let auth = 'Basic ' + new Buffer.from('user:password').toString('base64');
 let opts = {
-  host: 'gocdhostexample.net',
-  port: 8154,
-  path: '/go/api/pipelines/deploy/schedule',
-  method: 'POST',
-  headers: {
-    'Authorization': auth,
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.go.cd.v1+json',
-    'X-GoCD-Confirm': true
-  }
-};
+    url: 'http://httpbin.org/post',
+    method: 'POST'
+  };
 
 (async () => {
-  try {
-    const res = await request(opts);
-    console.log(res.body); // Request to schedule pipeline deploy accepted
-  } catch (err) {
-    console.log(err.message);
-  }
+    try {
+        const response = await finer(opts);
+        console.log(JSON.parse(response.body).url); // http://httpbin.org/post
+    } catch (err) {
+        console.log(err);
+    }
 })();
 ```
