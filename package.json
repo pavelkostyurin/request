@@ -1,15 +1,21 @@
 {
   "name": "@zayyeh/request",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Tiny HTTP-client without dependencies",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "GET",
-    "POST",
-    "HTTP"
+    "http",
+    "https",
+    "simple",
+    "request",
+    "promise",
+    "util",
+    "utility",
+    "get",
+    "post"
   ],
   "author": "Pavel Kostyurin",
   "license": "MIT",

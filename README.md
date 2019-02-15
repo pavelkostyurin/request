@@ -1,5 +1,9 @@
 # @zayyeh/request
+[![npm (scoped)]
+(https://img.shields.io/bundlephobia/min/@zayyeh/request.svg?style=flat)]
+(https.github.com/pavelkostyurin/request)
 
+https://img.shields.io/node/v/@zayyeh/request.svg?style=flat
 Tiny HTTP-client without dependencies.
 
 ### features
