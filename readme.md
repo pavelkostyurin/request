@@ -15,7 +15,7 @@ Tiny HTTP-client without dependencies. Stupid, simple, no fancy stuff.
 - supports HTTPS
 - supports options
 - does not support redirect
-
+- default timeout is 60 seconds, unless other specified
 
 ### install
 
@@ -64,4 +64,22 @@ let opts = {
         console.log(err);
     }
 })();
+```
+
+### timeout
+
+Default value is 60 seconds.
+For custom timeout use option `{ timeout: value }`.
+
+```js
+const finer = require('finer');
+
+let opts = {
+    url: 'http://no-response.whatsoever', // Server not responding
+    timeout: 5000
+  };
+
+finer(opts)
+  .then(res => console.log(res))
+  .catch(err => console.log(err)); // Request timed out: http://no-response.whatsoever
 ```

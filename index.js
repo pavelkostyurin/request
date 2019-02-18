@@ -21,6 +21,14 @@ module.exports = (opts, cb) => {
             res.on('end', () => resolve({ ...res, body }));
         });
 
+        req.on('socket', socket => {
+            socket.setTimeout(opts.timeout || 60000);  
+            socket.on('timeout', () => {
+                socket.end();
+                reject('Request timed out: ' + opts.url);
+            });
+        });
+        
         req.on('error', error => reject(error));
         req.end();
     });
