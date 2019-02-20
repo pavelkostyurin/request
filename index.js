@@ -25,7 +25,7 @@ module.exports = (opts, cb) => {
             socket.setTimeout(opts.timeout || 60000);  
             socket.on('timeout', () => {
                 socket.end();
-                reject('Request timed out: ' + opts.url);
+                reject (new Error(`Request timed out: ${opts.url}`));
             });
         });
         

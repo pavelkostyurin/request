@@ -58,8 +58,8 @@ let opts = {
 
 (async () => {
     try {
-        const response = await finer(opts);
-        console.log(JSON.parse(response.body).url); // http://httpbin.org/post
+        const {body} = await finer(opts);
+        console.log(JSON.parse(body).url); // http://httpbin.org/post
     } catch (err) {
         console.log(err);
     }

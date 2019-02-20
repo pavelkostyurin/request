@@ -1,6 +1,6 @@
 {
   "name": "finer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tiny HTTP-client without dependencies. Stupid, simple, no fancy stuff.",
   "main": "index.js",
   "scripts": {
