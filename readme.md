@@ -14,6 +14,7 @@ Tiny HTTP-client without dependencies. Stupid, simple, no fancy stuff.
 - returns a Promise if no callback specified
 - supports HTTPS
 - supports options
+- supports post requests with x-www-form-urlencoded data
 - does not support redirect
 - default timeout is 60 seconds, unless other specified
 
@@ -41,12 +42,28 @@ const finer = require('finer');
 
 finer('http://example.com')
   .then(res => console.log(res.statusCode)) // 200
-  .catch(err => console.log(err));
+  .catch(e => console.log(e));
 ```
 
 ### async/await
 
-For `POST` use option `{ method: 'POST' }`.
+```js
+const finer = require('finer');
+
+(async () => {
+    try {
+        const { statusCode } = await finer('http://example.com');
+        console.log(statusCode); // 200
+    } catch (e) {
+        console.log(e);
+    }
+})();
+```
+
+### POST
+
+For `POST` use option `{ method: 'POST' }`
+
 
 ```js
 const finer = require('finer');
@@ -58,10 +75,36 @@ let opts = {
 
 (async () => {
     try {
-        const {body} = await finer(opts);
+        const { body } = await finer(opts);
         console.log(JSON.parse(body).url); // http://httpbin.org/post
-    } catch (err) {
-        console.log(err);
+    } catch (e) {
+        console.log(e);
+    }
+})();
+```
+
+### x-www-form-urlencoded
+
+To make request with `x-www-form-urlencoded` data use `opts.form` with `{ method: 'POST' }`
+
+
+```js
+const finer = require('finer');
+
+let opts = {
+    url: 'http://somewebsi.te/submit',
+    method: 'POST',
+    form: {
+    	user: 'username',
+        passwd: 'password'
+    }
+  };
+
+(async () => {
+    try {
+        const { body } = await finer(opts);
+    } catch (e) {
+        console.log(e);
     }
 })();
 ```
@@ -69,7 +112,7 @@ let opts = {
 ### timeout
 
 Default value is 60 seconds.
-For custom timeout use option `{ timeout: value }`.
+For custom timeout use option `{ timeout: value }`
 
 ```js
 const finer = require('finer');
@@ -81,5 +124,5 @@ let opts = {
 
 finer(opts)
   .then(res => console.log(res))
-  .catch(err => console.log(err)); // Request timed out: http://no-response.whatsoever
+  .catch(e => console.log(e)); // Request timed out: http://no-response.whatsoever
 ```
